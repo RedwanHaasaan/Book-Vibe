@@ -17,9 +17,9 @@ const ListedBooks = () => {
       ? getSortedBooks(readBooks)
       : getSortedBooks(wishlistBooks);
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 xl:px-6">
       {/* Header */}
-      <ListedHeader />
+      <ListedHeader/>
 
       {/* Tabs */}
       <div className="px-2 lg:px-0">
