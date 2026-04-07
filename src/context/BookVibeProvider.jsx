@@ -5,7 +5,7 @@ const BookVibeProvider = ({ children }) => {
   const [Books, setBooks] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [isOpen, setIsOpen] = useState(false);
 
   //Load Books Data
   useEffect(() => {
@@ -45,7 +45,9 @@ const BookVibeProvider = ({ children }) => {
     Books,
     LoadBookDetails,
     Loading,
-    error
+    error,
+    isOpen,
+    setIsOpen
   };
   return (
     <BookVibeContext.Provider value={contextValue}>
