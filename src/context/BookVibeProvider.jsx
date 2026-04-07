@@ -9,6 +9,7 @@ const BookVibeProvider = ({ children }) => {
   const [readBooks, setReadBooks] = useState([]);
   const [wishlistBooks, setWishlistBooks] = useState([]);
   const [selectedTab, setSelectedTab] = useState("read");
+  const [sortBy, setSortBy] = useState("");
   //Load Books Data
   useEffect(() => {
     const loadBooks = async () => {
@@ -50,6 +51,23 @@ const BookVibeProvider = ({ children }) => {
   const addToWishlistBooks = (book)=>{
     setWishlistBooks((prevBooks)=> [...prevBooks, book]);
   };
+
+  //Sorting Logic
+  const getSortedBooks = (books) =>{
+    if(!sortBy) return books;
+    const sortedBooks = [...books];
+    
+    switch(sortBy){
+      case "rating":
+        return sortedBooks.sort((a,b)=> b.rating - a.rating);
+      case "pages":
+        return sortedBooks.sort((a,b)=> b.totalPages - a.totalPages);
+      case "year":
+        return sortedBooks.sort((a,b)=> b.yearOfPublishing - a.yearOfPublishing);
+      default:
+        return books;
+    }
+  }
   //Context Value
   const contextValue = {
     Books,
@@ -63,7 +81,10 @@ const BookVibeProvider = ({ children }) => {
     wishlistBooks,
     addToWishlistBooks,
     selectedTab,
-    setSelectedTab
+    setSelectedTab,
+    sortBy,
+    setSortBy,
+    getSortedBooks
   };
   return (
     <BookVibeContext.Provider value={contextValue}>

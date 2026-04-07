@@ -2,7 +2,12 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import useBookVibe from './../../hooks/useBookVibe';
 
 const SortMenu = () => {
-    const {isOpen,setIsOpen}=useBookVibe();
+    const {isOpen,setIsOpen,setSortBy} = useBookVibe();
+
+    const handleSort = (type)=>{
+      setSortBy(type);
+      setIsOpen(false);
+    }
   return (
     <div className="relative inline-block">
       
@@ -18,17 +23,17 @@ const SortMenu = () => {
       {isOpen && (
         <ul className="absolute mt-2 w-52 bg-base-100 rounded-box shadow z-50 p-2">
           <li>
-            <button className="w-full text-left hover:bg-base-200 px-2 py-1 rounded">
+            <button onClick={() => handleSort("rating")} className="w-full text-left hover:bg-base-200 px-2 py-1 rounded">
               Rating
             </button>
           </li>
           <li>
-            <button className="w-full text-left hover:bg-base-200 px-2 py-1 rounded">
+            <button onClick={() => handleSort("pages")} className="w-full text-left hover:bg-base-200 px-2 py-1 rounded">
               Number of Pages
             </button>
           </li>
           <li>
-            <button className="w-full text-left hover:bg-base-200 px-2 py-1 rounded">
+            <button onClick={() => handleSort("year")} className="w-full text-left hover:bg-base-200 px-2 py-1 rounded">
               Publishing Year
             </button>
           </li>
