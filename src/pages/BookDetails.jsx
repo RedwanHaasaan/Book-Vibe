@@ -3,7 +3,7 @@ import useBookVibe from './../hooks/useBookVibe';
 
 export default function BookDetails() {
     const { id } = useParams();
-    const {LoadBookDetails, error} = useBookVibe();
+    const {LoadBookDetails, error, addToReadBooks,addToWishlistBooks} = useBookVibe();
     const book = LoadBookDetails(id);
     
   //Error Handling
@@ -103,10 +103,10 @@ export default function BookDetails() {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 mt-8">
-          <a className="btn btn-outline border-gray-400 font-bold w-full sm:w-auto px-7 py-5">
+          <a onClick={()=> addToReadBooks(book)} className="btn btn-outline border-gray-400 font-bold w-full sm:w-auto px-7 py-5">
             Read
           </a>
-          <a className="btn btn-info text-white bg-sky-400 font-bold w-full sm:w-auto px-7 py-5">
+          <a onClick={()=> addToWishlistBooks(book)} className="btn btn-info text-white bg-sky-400 font-bold w-full sm:w-auto px-7 py-5">
             Wishlist
           </a>
         </div>

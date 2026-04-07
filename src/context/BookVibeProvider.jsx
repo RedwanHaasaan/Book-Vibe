@@ -6,7 +6,9 @@ const BookVibeProvider = ({ children }) => {
   const [Loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [readBooks, setReadBooks] = useState([]);
+  const [wishlistBooks, setWishlistBooks] = useState([]);
+  const [selectedTab, setSelectedTab] = useState("read");
   //Load Books Data
   useEffect(() => {
     const loadBooks = async () => {
@@ -40,6 +42,14 @@ const BookVibeProvider = ({ children }) => {
     }
   }
 
+  //Read Books and Wishlist Books management
+  const addToReadBooks = (book)=>{
+    setReadBooks((prevBooks)=> [...prevBooks, book]);
+  };
+
+  const addToWishlistBooks = (book)=>{
+    setWishlistBooks((prevBooks)=> [...prevBooks, book]);
+  };
   //Context Value
   const contextValue = {
     Books,
@@ -47,7 +57,13 @@ const BookVibeProvider = ({ children }) => {
     Loading,
     error,
     isOpen,
-    setIsOpen
+    setIsOpen,
+    readBooks,
+    addToReadBooks,
+    wishlistBooks,
+    addToWishlistBooks,
+    selectedTab,
+    setSelectedTab
   };
   return (
     <BookVibeContext.Provider value={contextValue}>
