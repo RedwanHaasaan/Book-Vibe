@@ -1,9 +1,12 @@
 import React from 'react';
+import BookBarChart from '../components/sections/BookBarChart';
+import useBookVibe from '../hooks/useBookVibe';
 
 const PagesToRead = () => {
+    const{Books}= useBookVibe();
     return (
         <div>
-            <h1>Pages to Read</h1>
+            <BookBarChart books={Books} dataKey='totalPages' />
         </div>
     );
 };
